@@ -1,0 +1,40 @@
+.list {
+    @size: 50px;
+    @space: @size / 5;
+
+    height: 100%;
+    padding: @space;
+    overflow: auto;
+    .center-page {
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+    .title-list-pnl {
+        .title-list {
+            display: flex;
+            flex-direction: column;
+            > li {
+                min-height: @size;
+                margin-top: @space;
+                padding: @space;
+                color: #fff;
+                font-size: 16px;
+                background-color: rgba(0, 0, 0, .5);
+                transition: background 200ms;
+                display: flex;
+                align-items: center;
+                span {
+                    margin: @space;
+                }
+                .face {
+                    img {
+                        height: @size - @space;
+                    }
+                }
+                &:hover {
+                    background-color: rgba(0, 0, 0, 1);
+                }
+            }
+        }
+    }
+}
