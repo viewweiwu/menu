@@ -1,11 +1,21 @@
 import Vue from 'vue';
-import list from './views/list';
+import VueRouter from 'vue-router';
+import routes from './routers';
+import Mint from 'mint-ui';
 
+import 'mint-ui/lib/style.css';
 import './assets/less/main.less';
+
+Vue.use(VueRouter);
+Vue.use(Mint);
+
+// 实例化VueRouter
+const router = new VueRouter({
+    mode: 'history',
+    routes
+});
 
 /* eslint-disable no-new */
 new Vue({
-    el: '#app',
-    template: '<list/>',
-    components: { list }
-})
+    router
+}).$mount('#app');
