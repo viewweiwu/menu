@@ -9,6 +9,9 @@ import './assets/less/main.less';
 Vue.use(VueRouter);
 Vue.use(Mint);
 
+// 禁止页面原生滚动
+// document.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
+
 // 实例化VueRouter
 const router = new VueRouter({
     mode: 'history',

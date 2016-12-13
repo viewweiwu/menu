@@ -1,27 +1,32 @@
+<style lang="less">
+    @import "../assets/less/main";
+</style>
 <template>
     <div class="list">
         <div class="header">
-            <ul class="tab">
+            <!--<ul class="tab">
                 <li v-for="type in types" @click="onTabSelect(type.value)" :key="type.value">{{type.text}}</li>
-            </ul>
+            </ul>-->
         </div>
         <div class="main center-page">
-            <div class="title-list-pnl">
-                <ul class="title-list">
-                    <li v-for="(item, i) in list" :key="item.id">
-                        <span class="index" :title="i + 1">{{(i + 1) > 9999 ? "..." : (i + 1)}}</span>
-                        <span class="face">
-                            <img :src="item.author.avatar_url" alt="" :title="item.author.loginname"/>
-                        </span>
-                        <span :class="{type: item.tab, hot: item.good}" v-if="item.tab">{{item.tab | tab}}</span>
-                        <span class="name" :title="item.title">{{item.title}}</span>
-                    </li>
-                </ul>
-                <div class="load-more" @click="next">
-                    <span class="prev" v-show="page != 1">上一页</span>
-                    <span class="next">下一页</span>
+            <iscroll-lite @scrollStart="log" :options="{preventDefault: false}">
+                <div class="title-list-pnl">
+                    <ul class="title-list">
+                        <li v-for="(item, i) in list" :key="item.id">
+                            <span class="index" :title="i + 1">{{(i + 1) > 9999 ? "..." : (i + 1)}}</span>
+                            <span class="face">
+                                <img :src="item.author.avatar_url" alt="" :title="item.author.loginname"/>
+                            </span>
+                            <span :class="{type: item.tab, hot: item.good}" v-if="item.tab">{{item.tab | tab}}</span>
+                            <span class="name" :title="item.title">{{item.title}}</span>
+                        </li>
+                    </ul>
+                    <div class="load-more" @click="next">
+                        <span class="prev" v-show="page != 1">上一页</span>
+                        <span class="next">下一页</span>
+                    </div>
                 </div>
-            </div>
+            </iscroll-lite>
         </div>
         <div class="bg"></div>
     </div>
@@ -30,6 +35,7 @@
 <script>
     import $ from "jquery";
     import common from "../lib/common";
+    import IscrollLite from 'vue-iscroll-lite'
     import {
         Indicator
     } from 'mint-ui';
@@ -70,6 +76,9 @@
             }];
         },
         methods: {
+            log(iscroll) {
+                console.log(iscroll)
+            },
             getData() {
                 Indicator.open();
                 common.ajaxGet(common.api + '/topics', {
@@ -110,7 +119,6 @@
                     path: 'list',
                     query: query
                 })
-                this.getData();
             }
         },
         watch: {
@@ -124,6 +132,9 @@
             tab(value) {
                 return common.getType(value);
             }
+        },
+        components: {
+            IscrollLite
         }
     }
 </script>
