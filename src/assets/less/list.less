@@ -17,13 +17,14 @@
     .page {
         position: relative;
     }
-    .header {
-        top: @space;
-        z-index: 1;
+    .type-pnl {
+        left: 0;
+        top: 30%;
+        z-index: 2;
         color: #fff;
         background-color: @bg-black;
         position: fixed;
-        .tab {
+        .type-list {
             li {
                 width: @size * 1.5;
                 height: 100%;
@@ -41,90 +42,88 @@
         }
     }
     .main {
-        .title-list-pnl {
-            .title-list {
+        .list-container {
+            display: flex;
+            flex-direction: column;
+            > li {
+                min-height: @size;
+                margin-top: @space;
+                padding: @space;
+                color: #fff;
+                font-size: 14px;
+                background-color: @bg-black;
+                transition: background 200ms;
                 display: flex;
-                flex-direction: column;
-                > li {
-                    min-height: @size;
-                    margin-top: @space;
-                    padding: @space;
-                    color: #fff;
-                    font-size: 14px;
-                    background-color: @bg-black;
-                    transition: background 200ms;
+                align-items: center;
+                position: relative;
+                overflow: hidden;
+                span {
+                    margin: @space;
+                }
+                .type {
+                    top: -@size / 2;
+                    left: -@size / 2;
+                    width: @size;
+                    height: @size;
+                    margin: 0;
+                    font-size: 12px;
+                    color: #333;
+                    background-color: #ddd;
+                    transform: rotate(-45deg);
                     display: flex;
-                    align-items: center;
-                    position: relative;
-                    overflow: hidden;
-                    span {
-                        margin: @space;
-                    }
-                    .type {
-                        top: -@size / 2;
-                        left: -@size / 2;
-                        width: @size;
-                        height: @size;
-                        margin: 0;
-                        font-size: 12px;
-                        color: #333;
-                        background-color: #ddd;
-                        transform: rotate(-45deg);
-                        display: flex;
-                        justify-content: center;
-                        align-items: flex-end;
-                        position: absolute;
-                        &.hot {
-                            color: #fff;
-                            background-color: @bg-blue;
-                        }
-                    }
-                    .face {
-                        max-width: @size * 2;
-                        word-break: break-all;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        img {
-                            width: @size;
-                        }
-                    }
-                    &:hover {
-                        background-color: @bg-black-dark;
+                    justify-content: center;
+                    align-items: flex-end;
+                    position: absolute;
+                    &.good {
+                        color: #fff;
+                        background-color: @bg-blue;
                     }
                 }
-            }
-            .load-more {
-                display: flex;
-                margin: @space 0;
-                justify-content: center;
-                .prev,
-                .next {
-                    width: @size * 4;
-                    height: @size;
-                    margin: 0 @space;
-                    color: #fff;
-                    background-color: @bg-black;
-                    cursor: pointer;
+                .face {
+                    max-width: @size * 2;
+                    word-break: break-all;
                     display: flex;
+                    flex-direction: column;
                     align-items: center;
-                    justify-content: center;
-                    
-                    &:hover {
-                        background-color: @bg-black-dark;
+                    img {
+                        width: @size;
                     }
+                }
+                &:hover {
+                    background-color: @bg-black-dark;
+                }
+            }
+        }
+        .load-more {
+            display: flex;
+            margin: @space 0;
+            justify-content: center;
+            .prev,
+            .next {
+                width: @size * 4;
+                height: @size;
+                margin: 0 @space;
+                color: #fff;
+                background-color: @bg-black;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                
+                &:hover {
+                    background-color: @bg-black-dark;
                 }
             }
         }
     }
 
     @media screen and (max-width: (@page-size + @size * 4 + @space * 2)){
-        .header{
+        .type-pnl {
             top: 0;
             left: 0;
             width: 100%;
             background-color: @bg-black-dark;
-            .tab {
+            .type-list {
                 display: flex;
             }
         }
